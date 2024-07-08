@@ -243,6 +243,7 @@ body {
 }
 
 .variant-box-footer {
+    font-family: 'iranSans-regular-number', sans-serif;
     background-color: #ffffff;
     color: #1f2937;
     padding: 8px 16px;
