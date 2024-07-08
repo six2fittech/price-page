@@ -1,0 +1,369 @@
+@font-face {
+    font-display: fallback;
+    font-family: 'yekan';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/fa/yekan/YekanWeb-Regular.eot');
+    src: url('../fonts/fa/yekan/YekanWeb-Regular.eot?#iefix') format('eot'), 
+       url('../fonts/fa/yekan/YekanWeb-Regular.woff') format('woff'), 
+       url('../fonts/fa/yekan/YekanWeb-Regular.ttf') format('truetype'), 
+       url('../fonts/fa/yekan/YekanWeb-Regular.svg#YekanWeb') format('svg');
+}
+
+@font-face {
+    font-display: fallback;
+    font-family: 'iranSans-bold';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/fa/iranSans/IranSans/Bold/IranSans-Bold.eot');
+    src: url('../fonts/fa/iranSans/IranSans/Bold/IranSans-Bold.eot?#iefix') format('eot'), 
+       url('../fonts/fa/iranSans/IranSans/Bold/IranSans-Bold.woff') format('woff'), 
+       url('../fonts/fa/iranSans/IranSans/Bold/IranSans-Bold.ttf') format('truetype'), 
+       url('../fonts/fa/iranSans/IranSans/Bold/IranSans-Bold.svg#iranSans') format('svg');
+}
+
+@font-face {
+    font-display: fallback;
+    font-family: 'iranSans-regular';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/fa/iranSans/IranSans/Regular/IranSans-Regular.eot');
+    src: url('../fonts/fa/iranSans/IranSans/Regular/IranSans-Regular.eot?#iefix') format('eot'), 
+       url('../fonts/fa/iranSans/IranSans/Regular/IranSans-Regular.woff') format('woff'), 
+       url('../fonts/fa/iranSans/IranSans/Regular/IranSans-Regular.ttf') format('truetype'), 
+       url('../fonts/fa/iranSans/IranSans/Regular/IranSans-Regular.svg#iranSans') format('svg');
+}
+
+@font-face {
+    font-display: fallback;
+    font-family: 'iranSans-regular-number';
+    font-style: normal;
+    font-weight: normal;
+    src: url('../fonts/fa/iranSans/IranSansNumbers/Regular/IranSansNumbers-Regular.eot');
+    src: url('../fonts/fa/iranSans/IranSansNumbers/Regular/IranSansNumbers-Regular.eot?#iefix') format('eot'), 
+       url('../fonts/fa/iranSans/IranSansNumbers/Regular/IranSansNumbers-Regular.woff') format('woff'), 
+       url('../fonts/fa/iranSans/IranSansNumbers/Regular/IranSansNumbers-Regular.ttf') format('truetype'), 
+       url('../fonts/fa/iranSans/IranSansNumbers/Regular/IranSansNumbers-Regular.svg#IranSansNumbers') format('svg');
+}
+
+.header-logo {
+    width: 100%; /* Full width to ensure the container fits the width of the page */
+    text-align: center; /* Center the logo image */
+    padding: 10px 0; /* Padding for some space around the logo */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Adds shadow for depth */
+}
+
+.header-logo img {
+    height: 60px; /* Adjust based on your logo's dimensions */
+    width: auto; /* Maintain aspect ratio */
+}
+
+body {
+    font-family: 'iranSans-regular', sans-serif; /* Applies Vazir as the primary font */
+    direction: rtl; /* Ensures all text aligns right-to-left */
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 601px) {
+    body {
+        font-size: 16px;
+    }
+}
+
+.main
+{
+    Height: 100vh;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    transition: background-color 0.3s;
+}
+
+.custom-bg-purple {
+    background-color: #a339ff;
+}
+
+.custom-bg-orange {
+    background-color: #ffa200;
+}
+
+.custom-bg-green {
+    background-color: #00b152;
+}
+
+.custom-bg-red {
+    background-color: #ff3300;
+}
+
+.custom-bg-dark-red {
+    background-color: #e80000;
+}
+
+.custom-bg-purple-2 {
+    background-color: #c934ff;
+}
+
+.custom-bg-purple-3 {
+    background-color: #d8009e;
+}
+
+.custom-bg-with-shadow-purple {
+    background-color: #a339ff;
+    box-shadow: 3px 5px 4px -4px #a339ff;
+}
+
+.custom-bg-with-shadow-orange {
+    background-color: #ffa200;
+    box-shadow: 3px 5px 4px -4px #ffa200;
+}
+
+.custom-bg-with-shadow-green {
+    background-color: #00b152;
+    box-shadow: 3px 5px 4px -4px #00b152;
+}
+
+.custom-bg-with-shadow-red {
+    background-color: #ff3300;
+    box-shadow: 3px 5px 4px -4px #ff3300;
+}
+
+.custom-bg-with-shadow-dark-red {
+    background-color: #e80000;
+    box-shadow: 3px 5px 4px -4px #e80000;
+}
+
+.custom-bg-with-shadow-purple-2 {
+    background-color: #c934ff;
+    box-shadow: 3px 5px 4px -4px #c934ff;
+}
+
+.custom-bg-with-shadow-purple-3 {
+    background-color: #d8009e;
+    box-shadow: 3px 5px 4px -4px #d8009e;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.product-info {
+    position: relative;
+    min-height: 300px;  /* Adjust based on content size to prevent layout shifts */
+    width: 100%; /* Makes the box width responsive */
+    padding: 15px; /* Adds padding inside the box */
+    box-sizing: border-box; /* Includes padding and border in the element's width */
+    margin-bottom: 20px; /* Adds space below each product-info box */
+}
+
+.product.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap; /* Allows buttons to wrap onto the next line on smaller screens */
+    justify-content: center; /* Centers buttons in the container */
+    width: 100%; /* Ensures the group takes full width */
+    margin-bottom: 10px; /* Space below the button group */
+}
+
+.btn-group button {
+    flex: 1 1 auto; /* Allows buttons to grow and shrink */
+    margin: 5px; /* Spacing between buttons */
+    padding: 10px 20px; /* Padding inside each button */
+    text-align: center; /* Center the text inside buttons */
+    color: white; /* Text color */
+    border: none; /* No borders */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Media Queries for smaller screens */
+@media (max-width: 768px) {
+    .btn-group button {
+        padding: 8px 10px; /* Smaller padding */
+        font-size: 14px; /* Smaller font size */
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-group button {
+        flex-basis: 100%; /* Each button takes full width of the line */
+        margin: 2px 0; /* Only vertical margin */
+    }
+}
+
+.product {
+    display: block;
+    opacity: 1;
+/*    visibility: hidden;*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+
+.variants {
+    display: flex;
+    justify-content: space-around; /* Adapts automatically for RTL */
+    flex-wrap: wrap; // Ensures responsiveness
+}
+
+.variant-box {
+    border: 1px solid #d1d5db;
+    border-radius: 25px 8px 30px 30px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease;
+    margin: 0 0 12px 0;
+    cursor: pointer;
+}
+
+.variant-box-header {
+    color: #ffffff;
+    padding: 8px 16px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    z-index: 1;
+    border-radius: 25px 8px 25px 8px;
+}
+
+.variant-box-content {
+    padding: 0 16px; /* Aligning horizontal padding with header/footer */
+    text-align: left; /* Left alignment for natural reading */
+    color: #4b5563; /* Softer dark gray for content */
+    line-height: 1.6; /* Adequate line spacing for readability */
+}
+
+.variant-box-footer {
+    background-color: #ffffff;
+    color: #1f2937;
+    padding: 8px 16px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.variant-box:hover {
+    box-shadow: 0 10px 2px -6px rgba(0, 0, 0, 0.15);
+}
+
+
+.btn-variant {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    cursor: pointer; /* Makes it clear that the button is clickable */
+}
+
+.btn-variant:hover {
+    background-color: #0056b3;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    text-align: center;
+    border: solid 1px #000;
+    padding: 10px 0;
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Bootstrap secondary button color */
+    border: none;
+    padding: 5px 10px;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+
+.variant-header {
+    font-family: 'iranSans-regular-number', sans-serif; /* Applies Vazir as the primary font */
+    flex: 0 0 auto; /* do not grow or shrink, keep the flex basis auto */
+    width: 100%;
+    text-align:center;
+    padding: 10px 0;
+    font-weight: bold;
+}
+.variant-content {
+    flex: 1 1 auto; /* grow or shrink as appropriate */
+    overflow:auto;
+    width: 100%;
+    text-align:center;
+}
+.variant-footer {
+    font-family: 'iranSans-regular-number', sans-serif; /* Applies Vazir as the primary font */
+    flex: 0 0 auto; /* do not grow or shrink, keep the flex basis auto */
+    width: 100%;
+    text-align: center;
+    color: #000;
+}
+
+/*.categories-btn:hover{
+    border-radius: 100px;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    transition: background-color 0.3s;
+}*/
+
+.draw-border {
+  transition: color 0.25s 0.0833333333s;
+  position: relative;
+}
+.draw-border::before, .draw-border::after {
+  border: 0 solid transparent;
+  box-sizing: border-box;
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  bottom: 0;
+  right: 0;
+}
+.draw-border::before {
+  border-bottom-width: 4px;
+  border-left-width: 4px;
+}
+.draw-border::after {
+  border-top-width: 4px;
+  border-right-width: 4px;
+}
+.draw-border:hover {
+  color: #fff;
+}
+.draw-border:hover::before, .draw-border:hover::after {
+  border-color: #fff;
+  transition: border-color 0s, width 0.25s, height 0.25s;
+  width: 100%;
+  height: 100%;
+}
+.draw-border:hover::before {
+  transition-delay: 0s, 0s, 0.25s;
+}
+.draw-border:hover::after {
+  transition-delay: 0s, 0.25s, 0s;
+}
+
+.categories-btn {
+  border: none;
+  cursor: pointer;
+  line-height: 1.5;
+  padding: 1em 2em;
+  letter-spacing: 0.05rem;
+}
+.categories-btn:focus {
+  outline: 2px dotted #55d7dc;
+}

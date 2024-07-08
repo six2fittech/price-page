@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Six2Fit - محصولات</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <header class="header-logo">
+        <img src="assets/images/logo.png" alt="Your Logo" />
+    </header>
+
+    <div class="container-fluid py-5 main" :class="[categoryToShow.bgColorClass]" id="app">
+        <div class="row justify-content-center" >
+            <div class="col-md-8">
+                <!-- Navigation for Products -->
+                <div class="btn-group mb-3" role="group" aria-label="Navigation for products">
+                    <button v-for="(cat, index) in categories" :key="index" type="button" :class="['btn','categories-btn','draw-border',cat.bgColorClass]" @click="showProduct(cat)">
+                        {{ cat.title }}
+                    </button>
+                </div>
+
+                <div id="product-info" class="product-info">
+                    <div class="product" id="product1">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="card-title">{{ categoryToShow.title }}</h3>
+                                <!-- <p class="card-text">{{ categoryToShow.description }}</p> -->
+                                <div class="variants d-flex justify-content-around">
+                                    <div v-for="(item, index) in categoryToShow.items" :key="index" class="variant-box" @click="openUrl(item.link)">
+                                        <div class="variant-box-header" :class="[categoryToShow.variantBoxHeaderBgColorClass]">{{ item.title }}</div>
+                                        <!-- <div class="variant-box-content">{{ item.title }}</div> -->
+                                        <div class="variant-box-footer">{{ showItemPrice(item) }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="module">
+      import { createApp } from "https://cdn.skypack.dev/petite-vue";
+
+      const categories = [
+            {
+                "title": "برنامه غذایی ، ورزشی",
+                "description": "برنامه غذایی ، ورزشی",
+                "slug": "food-and-exercise",
+                "bgColorClass": "custom-bg-purple",
+                "variantBoxHeaderBgColorClass": "custom-bg-with-shadow-purple",
+                "items": [
+                    {
+                        "title": "۷ تایی - ۱ ماهه",
+                        "price_IRR": 999000,
+                        "price_USD": 99,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food-traning?sku=FT-n-7-1",
+                        "sku": "FT-n-7-1",
+                    },
+                    {
+                        "title": "۷ تایی - ۳ ماهه",
+                        "price_IRR": 2499000,
+                        "price_USD": 269,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food-traning?sku=FT-n-7-3",
+                        "sku": "FT-n-7-3",
+                    },
+                    {
+                        "title": "۱۵ تایی - ۱ ماهه",
+                        "price_IRR": 1199000,
+                        "price_USD": 149,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food-traning?sku=FT-n-15-1",
+                        "sku": "FT-n-15-1",
+                    },
+                    {
+                        "title": "۱۵ تایی - ۳ ماهه",
+                        "price_IRR": 2999000,
+                        "price_USD": 349,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food-traning?sku=FT-n-15-3",
+                        "sku": "FT-n-15-3",
+                    },
+                    {
+                        "title": "فستینگ - ۷ تایی - ۱ ماهه",
+                        "price_IRR": 1199000,
+                        "price_USD": 129,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food-traning?sku=FT-f-7-1",
+                        "sku": "FT-f-7-1",
+                    },
+                    {
+                        "title": "فستینگ - ۷ تایی - ۳ ماهه",
+                        "price_IRR": 2899000,
+                        "price_USD": 299,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food-traning?sku=FT-f-7-3",
+                        "sku": "FT-f-7-3",
+                    },
+                    {
+                        "title": "فستینگ - ۱۵ تایی - ۱ ماهه",
+                        "price_IRR": 1399000,
+                        "price_USD": 179,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food-traning?sku=FT-f-15-1",
+                        "sku": "FT-f-15-1",
+                    },
+                    {
+                        "title": "فستینگ - ۱۵ تایی - ۳ ماهه",
+                        "price_IRR": 3399000,
+                        "price_USD": 399,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food-traning?sku=FT-f-15-3",
+                        "sku": "FT-f-15-3",
+                    },
+                    {
+                        "title": "گیاه خواری- ۷ تایی - ۱ ماهه",
+                        "price_IRR": 1399000,
+                        "price_USD": 169,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food-traning?sku=FT-V-7-1",
+                        "sku": "FT-V-7-1",
+                    },
+                    {
+                        "title": "گیاه خواری- ۷ تایی - ۳ ماهه",
+                        "price_IRR": 3399000,
+                        "price_USD": 369,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food-traning?sku=FT-V-7-3",
+                        "sku": "FT-V-7-3",
+                    },
+                    {
+                        "title": "فستینگ، گیاه خواری - ۷ تایی- ۱ ماهه",
+                        "price_IRR": 1499000,
+                        "price_USD": 199,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food-traning?sku=FT-FV-7-1",
+                        "sku": "FT-FV-7-1",
+                    },
+                ],
+            },
+            {
+                "title": "برنامه غذایی",
+                "description": "برنامه غذایی",
+                "slug": "food",
+                "bgColorClass": "custom-bg-orange",
+                "variantBoxHeaderBgColorClass": "custom-bg-with-shadow-orange",
+                "items": [
+                    {
+                        "title": "۷ تنوع - ۱ ماه",
+                        "price_IRR": 599000,
+                        "price_USD": 69,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food?sku=F-n-7-1",
+                        "sku": "F-n-7-1",
+                    },
+                    {
+                        "title": "۷ تنوع - ۳ ماهه",
+                        "price_IRR": 1499000,
+                        "price_USD": 169,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food?sku=F-n-7-3",
+                        "sku": "F-n-7-3",
+                    },
+                    {
+                        "title": "۱۵ تنوع - ۱ ماهه",
+                        "price_IRR": 799000,
+                        "price_USD": 99,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food?sku=F-n-15-1",
+                        "sku": "F-n-15-1",
+                    },
+                    {
+                        "title": "۱۵ تنوع - ۳ ماهه",
+                        "price_IRR": 1899000,
+                        "price_USD": 249,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food?sku=F-n-15-3",
+                        "sku": "F-n-15-3",
+                    },
+                    {
+                        "title": "فستینگ - ۷ تنوع - ۱ ماهه",
+                        "price_IRR": 799000,
+                        "price_USD": 89,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food?sku=F-f-7-1",
+                        "sku": "F-f-7-1",
+                    },
+                    {
+                        "title": "فستینگ - ۷ تنوع - ۳ ماهه",
+                        "price_IRR": 1899000,
+                        "price_USD": 199,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food?sku=F-f-7-3",
+                        "sku": "F-f-7-3",
+                    },
+                    {
+                        "title": "فستینگ - ۱۵ تنوع - ۱ ماهه",
+                        "price_IRR": 999000,
+                        "price_USD": 149,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food?sku=F-F-15-1",
+                        "sku": "F-F-15-1",
+                    },
+                    {
+                        "title": "فستینگ - ۱۵ تنوع - ۳ ماهه",
+                        "price_IRR": 2499000,
+                        "price_USD": 349,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food?sku=F-f-15-3",
+                        "sku": "F-f-15-3",
+                    },
+                    {
+                        "title": "گیاه خواری - ۷ تنوع  - ۱ ماهه",
+                        "price_IRR": 899000,
+                        "price_USD": 119,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food?sku=F-V-7-1",
+                        "sku": "F-V-7-1",
+                    },
+                    {
+                        "title": "گیاه خواری - ۷ تنوع  - ۳ ماهه",
+                        "price_IRR": 2099000,
+                        "price_USD": 299,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food?sku=F-V-7-3",
+                        "sku": "F-V-7-3",
+                    },
+                    {
+                        "title": "فستینگ، گیاه خواری- ۷ تنوع - ۱ ماهه",
+                        "price_IRR": 999000,
+                        "price_USD": 169,
+                        "category": "",
+                        "link": "https://six2fit.com/product/food?sku=F-FV-7-1",
+                        "sku": "F-FV-7-1",
+                    },
+                ],
+            },
+            {
+                "title": "برنامه ورزشی",
+                "description": "برنامه ورزشی",
+                "slug": "exercise",
+                "bgColorClass": "custom-bg-green",
+                "variantBoxHeaderBgColorClass": "custom-bg-with-shadow-green",
+                "items": [
+                    {
+                        "title": "برنامه ورزشی - ۱ ماهه",
+                        "price_IRR": 599000,
+                        "price_USD": 69,
+                        "category": "",
+                        "link": "https://six2fit.com/product/training?sku=T-N-1",
+                        "sku": "T-N-1",
+                    },
+                    {
+                        "title": "برنامه ورزشی - ۳ ماهه",
+                        "price_IRR": 1499000,
+                        "price_USD": 169,
+                        "category": "",
+                        "link": "https://six2fit.com/product/training?sku=T-N-3",
+                        "sku": "T-N-3",
+                    },
+                    {
+                        "title": "برنامه ورزشی ۱ ماهه | VIP",
+                        "price_IRR": 999000,
+                        "price_USD": 149,
+                        "category": "",
+                        "link": "https://six2fit.com/product/training?sku=T-vip-1",
+                        "sku": "T-vip-1",
+                    },
+                    {
+                        "title": "برنامه ورزشی ۳ ماهه | VIP",
+                        "price_IRR": 2399000,
+                        "price_USD": 399,
+                        "category": "",
+                        "link": "https://six2fit.com/product/training?sku=T-vip-3",
+                        "sku": "T-vip-3",
+                    },
+                ],
+            },
+            {
+                "title": "برنامه غذایی ، ورزشی VIP",
+                "description": "برنامه غذایی ، ورزشی VIP",
+                "slug": "food-and-exercise-vip",
+                "bgColorClass": "custom-bg-red",
+                "variantBoxHeaderBgColorClass": "custom-bg-with-shadow-red",
+                "items": [
+                    {
+                        "title": "غذایی، ورزشی - ۷ تایی - ۱ ماه",
+                        "price_IRR": 1399000,
+                        "price_USD": 199,
+                        "category": "",
+                        "link": "https://six2fit.com/product/vip?sku=vip-n-7-1",
+                        "sku": "vip-n-7-1",
+                    },
+                    {
+                        "title": "غذایی، ورزشی - ۷ تایی - ۳ ماه",
+                        "price_IRR": 3399000,
+                        "price_USD": 499,
+                        "category": "",
+                        "link": "https://six2fit.com/product/vip?sku=vip-n-7-3",
+                        "sku": "vip-n-7-3",
+                    },
+                    {
+                        "title": "غذایی، ورزشی - ۱۵ تایی - ۱ ماه",
+                        "price_IRR": 1699000,
+                        "price_USD": 299,
+                        "category": "",
+                        "link": "https://six2fit.com/product/vip?sku=vip-n-15-1",
+                        "sku": "vip-n-15-1",
+                    },
+                    {
+                        "title": "غذایی و ورزشی فستینگ - ۷ تایی - 1 ماه",
+                        "price_IRR": 1399000,
+                        "price_USD": 199,
+                        "category": "",
+                        "link": "https://six2fit.com/product/vip?sku=vip-f-7-1",
+                        "sku": "vip-f-7-1",
+                    },
+                    {
+                        "title": "غذایی و ورزشی فستینگ - ۷ تایی - 3 ماه",
+                        "price_IRR": 3399000,
+                        "price_USD": 499,
+                        "category": "",
+                        "link": "https://six2fit.com/product/vip?sku=vip-f-7-3",
+                        "sku": "vip-f-7-3",
+                    },
+                    {
+                        "title": "غذایی و ورزشی فستینگ - ۱۵ تایی - ۱ ماه",
+                        "price_IRR": 1699000,
+                        "price_USD": 299,
+                        "category": "",
+                        "link": "https://six2fit.com/product/vip?sku=vip-f-15-1",
+                        "sku": "vip-f-15-1",
+                    },
+                    {
+                        "title": "غذایی و ورزشی گیاه خواری - ۷ تنوع - ۱ ماه",
+                        "price_IRR": 1599000,
+                        "price_USD": 249,
+                        "category": "",
+                        "link": "https://six2fit.com/product/vip?sku=vip-V-7-1",
+                        "sku": "vip-V-7-1",
+                    },
+                    {
+                        "title": "برنامه غذایی ورزشی - فستینگ، گیاه خواری- ۷ تنوع  ۱ ماه",
+                        "price_IRR": 1699000,
+                        "price_USD": 249,
+                        "category": "",
+                        "link": "https://six2fit.com/product/vip?sku=VIP-FV-7-1",
+                        "sku": "VIP-FV-7-1",
+                    },
+                ],
+            },
+            {
+                "title": "برنامه سلولیت VIP",
+                "description": "برنامه سلولیت VIP",
+                "slug": "cellulitis-vip",
+                "bgColorClass": "custom-bg-dark-red",
+                "variantBoxHeaderBgColorClass": "custom-bg-with-shadow-dark-red",
+                "items": [
+                    {
+                        "title": "سلولیت - ۷ تنوع - ۱ ماه",
+                        "price_IRR": 1499000,
+                        "price_USD": 249,
+                        "category": "",
+                        "link": "https://six2fit.com/product/vip?sku=VIP-C-7-1",
+                        "sku": "VIP-C-7-1",
+                    },
+                    {
+                        "title": "سلولیت - ۷ تنوع - ۳ ماه",
+                        "price_IRR": 3599000,
+                        "price_USD": 649,
+                        "category": "",
+                        "link": "https://six2fit.com/product/vip?sku=VIP-C-7-3",
+                        "sku": "VIP-C-7-3",
+                    },
+                    {
+                        "title": "سلولیت - ۱۵ تنوع - ۱ ماه",
+                        "price_IRR": 1899000,
+                        "price_USD": 349,
+                        "category": "",
+                        "link": "https://six2fit.com/product/vip?sku=VIP-C-15-1",
+                        "sku": "VIP-C-15-1",
+                    },
+                    {
+                        "title": "سلولیت فستینگ - ۷ تنوع - ۱ ماه",
+                        "price_IRR": 1499000,
+                        "price_USD": 249,
+                        "category": "",
+                        "link": "https://six2fit.com/product/vip?sku=VIP-CF-7-1",
+                        "sku": "VIP-CF-7-1",
+                    },
+                    {
+                        "title": "سلولیت فستینگ - ۱۵ تنوع - ۱ ماه",
+                        "price_IRR": 1899000,
+                        "price_USD": 349,
+                        "category": "",
+                        "link": "https://six2fit.com/product/vip?sku=VIP-CF-15-1",
+                        "sku": "VIP-CF-15-1",
+                    },
+                    {
+                        "title": "سلولیت گیاه خواری - ۷ تنوع - ۱ ماه",
+                        "price_IRR": 1699000,
+                        "price_USD": 299,
+                        "category": "",
+                        "link": "https://six2fit.com/product/vip?sku=VIP-CV-7-1",
+                        "sku": "VIP-CV-7-1",
+                    },
+                    {
+                        "title": "سلولیت فستینگ گیاه خواری  - ۷ تنوع - ۱ ماه",
+                        "price_IRR": 1699000,
+                        "price_USD": 299,
+                        "category": "",
+                        "link": "https://six2fit.com/product/vip?sku=VIP-CVF-7-1",
+                        "sku": "VIP-CVF-7-1",
+                    },
+                ],
+            },
+            {
+                "title": "برنامه مشاوره",
+                "description": "برنامه مشاوره",
+                "slug": "consultation",
+                "bgColorClass": "custom-bg-purple-2",
+                "variantBoxHeaderBgColorClass": "custom-bg-with-shadow-purple-2",
+                "items": [
+                    {
+                        "title": "مشاوره - نیم ساعته",
+                        "price_IRR": 4990000,
+                        "price_USD": 249,
+                        "category": "",
+                        "link": "https://six2fit.com/product/consulting?sku=850",
+                        "sku": "850",
+                    },
+                    {
+                        "title": "مشاوره - یک ساعته",
+                        "price_IRR": 8990000,
+                        "price_USD": 449,
+                        "category": "",
+                        "link": "https://six2fit.com/product/consulting?sku=CO-P2",
+                        "sku": "CO-P2",
+                    },
+                ],
+            },
+            {
+                "title": "برنامه GluteLab",
+                "description": "برنامه GluteLab",
+                "slug": "glutelab",
+                "bgColorClass": "custom-bg-purple-3",
+                "variantBoxHeaderBgColorClass": "custom-bg-with-shadow-purple-3",
+                "items": [
+                    {
+                        "title": "GluteLab | دوره آفلاین",
+                        "price_IRR": 5999000,
+                        "price_USD": 99,
+                        "category": "",
+                        "link": "https://six2fit.com/product/glute-lab-1-offline-course?sku=GL1-off-1",
+                        "sku": "GL1-off-1",
+                    },
+                ],
+            },
+        ];
+
+        const date = new Date();
+        let usertime = date.getTimezoneOffset();
+        const urlParams = new URLSearchParams(window.location.search);
+        const selectedCategorySlug = urlParams.get('category');
+
+        let selectedCategory = categories.find( item => item.slug == selectedCategorySlug ) ?? categories[0];
+
+      createApp({
+        categoryToShow: selectedCategory,
+        categories: categories,
+        showProduct(category)
+        {
+            this.categoryToShow = category;
+        },
+        openUrl(url)
+        {
+            window.open( url, "_blank");
+        },
+        showItemPrice(item)
+        {
+            if ( ( usertime <= -180 && usertime >= -300 ) && usertime != -240 ) {
+                return item.price_IRR + ' تومان';
+            }
+            else if( item.price_USD ) {
+                return '$' + item.price_USD;
+            };
+
+            return '-';
+        }
+      }).mount("#app");
+
+    </script>
+</body>
+</html>
