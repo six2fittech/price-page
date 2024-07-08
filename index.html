@@ -485,7 +485,9 @@
         showItemPrice(item)
         {
             if ( ( usertime <= -180 && usertime >= -300 ) && usertime != -240 ) {
-                return item.price_IRR + ' تومان';
+                let price = formatNumberWithCommas(item.price_IRR)
+                // console.log(price);
+                return price + ' تومان';
             }
             else if( item.price_USD ) {
                 return '$' + item.price_USD;
@@ -494,6 +496,12 @@
             return '-';
         }
       }).mount("#app");
+
+
+      function formatNumberWithCommas(number) {
+        console.log(number.toLocaleString());
+            return number.toLocaleString();
+        }
 
     </script>
 </body>
