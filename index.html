@@ -486,7 +486,7 @@
         {
             if ( ( usertime <= -180 && usertime >= -300 ) && usertime != -240 ) {
                 let price = formatNumberWithCommas(item.price_IRR)
-                // console.log(price);
+                changeFont();
                 return price + ' تومان';
             }
             else if( item.price_USD ) {
@@ -502,6 +502,13 @@
             return number.toLocaleString();
         }
 
+        function changeFont(){
+            var elements = document.getElementsByClassName('variant-box-footer');
+            for (var i = 0; i < elements.length; i++) {
+                var element = elements[i];
+                element.style.fontFamily = "iranSans-regular-number";
+            }   
+        }
     </script>
 </body>
 </html>
