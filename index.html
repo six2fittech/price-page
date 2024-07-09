@@ -476,7 +476,6 @@
             categories: categories,
             showProduct(category) {
                 this.categoryToShow = category;
-                this.changeFont();
             },
             openUrl(url) {
                 window.open(url, "_blank");
@@ -506,7 +505,9 @@
             },
             observeMutations() {
                 const observer = new MutationObserver(() => {
-                    this.changeFont();
+                    if ((usertime <= -180 && usertime >= -300) && usertime != -240) {
+                        this.changeFont();
+                    }
                 });
 
                 const config = { childList: true, subtree: true };
