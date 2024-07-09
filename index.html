@@ -13,7 +13,7 @@
         <img src="assets/images/logo.png" alt="Your Logo" />
     </header>
 
-    <div class="container-fluid py-5 main" :class="[categoryToShow.bgColorClass]" id="app">
+    <div class="container-fluid py-5 main" :class="[categoryToShow.bgColorClass]" id="app" @vue:mounted="onMounted()">
         <div class="row justify-content-center" >
             <div class="col-md-8">
                 <!-- Navigation for Products -->
@@ -486,7 +486,6 @@
         {
             if ( ( usertime <= -180 && usertime >= -300 ) && usertime != -240 ) {
                 let price = formatNumberWithCommas(item.price_IRR)
-                changeFont();
                 return price + ' تومان';
             }
             else if( item.price_USD ) {
@@ -494,6 +493,12 @@
             };
 
             return '-';
+        },
+        onMounted()
+        {
+            if ( ( usertime <= -180 && usertime >= -300 ) && usertime != -240 ) {
+                changeFont();
+            }
         }
       }).mount("#app");
 
