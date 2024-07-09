@@ -14,7 +14,7 @@
     </header>
 
     <div class="container-fluid py-5 main" :class="[categoryToShow.bgColorClass]" id="app" @vue:mounted="onMounted()">
-        <div class="row justify-content-center" >
+        <div class="row justify-content-center">
             <div class="col-md-8">
                 <!-- Navigation for Products -->
                 <div class="btn-group mb-3" role="group" aria-label="Navigation for products">
@@ -44,9 +44,9 @@
         </div>
     </div>
     <script type="module">
-      import { createApp } from "https://cdn.skypack.dev/petite-vue";
+        import { createApp } from "https://cdn.skypack.dev/petite-vue";
 
-      const categories = [
+        const categories = [
             {
                 "title": "برنامه غذایی ، ورزشی",
                 "description": "برنامه غذایی ، ورزشی",
@@ -469,50 +469,54 @@
         const urlParams = new URLSearchParams(window.location.search);
         const selectedCategorySlug = urlParams.get('category');
 
-        let selectedCategory = categories.find( item => item.slug == selectedCategorySlug ) ?? categories[0];
+        let selectedCategory = categories.find(item => item.slug == selectedCategorySlug) ?? categories[0];
 
-      createApp({
-        categoryToShow: selectedCategory,
-        categories: categories,
-        showProduct(category)
-        {
-            this.categoryToShow = category;
-        },
-        openUrl(url)
-        {
-            window.open( url, "_blank");
-        },
-        showItemPrice(item)
-        {
-            if ( ( usertime <= -180 && usertime >= -300 ) && usertime != -240 ) {
-                let price = formatNumberWithCommas(item.price_IRR)
-                return price + ' تومان';
+        createApp({
+            categoryToShow: selectedCategory,
+            categories: categories,
+            showProduct(category) {
+                this.categoryToShow = category;
+                this.changeFont();
+            },
+            openUrl(url) {
+                window.open(url, "_blank");
+            },
+            showItemPrice(item) {
+                if ((usertime <= -180 && usertime >= -300) && usertime != -240) {
+                    let price = formatNumberWithCommas(item.price_IRR);
+                    return price + ' تومان';
+                } else if (item.price_USD) {
+                    return '$' + item.price_USD;
+                }
+
+                return '-';
+            },
+            onMounted() {
+                if ((usertime <= -180 && usertime >= -300) && usertime != -240) {
+                    this.changeFont();
+                }
+                this.observeMutations();
+            },
+            changeFont() {
+                var elements = document.getElementsByClassName('variant-box-footer');
+                for (var i = 0; i < elements.length; i++) {
+                    var element = elements[i];
+                    element.style.fontFamily = "iranSans-regular-number";
+                }
+            },
+            observeMutations() {
+                const observer = new MutationObserver(() => {
+                    this.changeFont();
+                });
+
+                const config = { childList: true, subtree: true };
+
+                observer.observe(document.getElementById('app'), config);
             }
-            else if( item.price_USD ) {
-                return '$' + item.price_USD;
-            };
+        }).mount("#app");
 
-            return '-';
-        },
-        onMounted()
-        {
-            if ( ( usertime <= -180 && usertime >= -300 ) && usertime != -240 ) {
-                changeFont();
-            }
-        }
-      }).mount("#app");
-
-
-      function formatNumberWithCommas(number) {
+        function formatNumberWithCommas(number) {
             return number.toLocaleString();
-        }
-
-        function changeFont(){
-            var elements = document.getElementsByClassName('variant-box-footer');
-            for (var i = 0; i < elements.length; i++) {
-                var element = elements[i];
-                element.style.fontFamily = "iranSans-regular-number";
-            }   
         }
     </script>
 </body>
